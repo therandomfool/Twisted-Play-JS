@@ -1,0 +1,31 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+}
+
+:root {
+    --cell-size: 200px;
+    --mark-size: calc(var(--cell-size)*.9)
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
+    border: 3px solid black;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 3px solid black;
+}
