@@ -10,7 +10,7 @@ body {
 }
 
 :root {
-    --cell-size: 200px;
+    --cell-size: 150px;
     --mark-size: calc(var(--cell-size)*.9)
 }
 
@@ -21,11 +21,34 @@ body {
     justify-content: center;
     align-content: center;
     grid-template-columns: repeat(3, auto);
-    border: 3px solid black;
+
 }
 
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
     border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: var(--mark-size);
+    color: crimson;
+}
+
+
+
+.center {
+    margin-top: 50px;
+    margin-bottom: -200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.btn {
+    padding: 20px;
+    background-color: gold;
+    font-size: calc(var(--mark-size)*.5);
 }
