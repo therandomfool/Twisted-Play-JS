@@ -25,6 +25,7 @@ body {
 }
 
 .cell {
+    cursor: pointer;
     width: var(--cell-size);
     height: var(--cell-size);
     border: 3px solid black;
