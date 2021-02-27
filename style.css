@@ -25,7 +25,6 @@ body {
 }
 
 .cell {
-    cursor: pointer;
     width: var(--cell-size);
     height: var(--cell-size);
     border: 3px solid black;
@@ -40,7 +39,7 @@ body {
 
 
 .center {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: -200px;
     display: flex;
     align-items: center;
@@ -50,6 +49,14 @@ body {
 
 .btn {
     padding: 20px;
+    margin: auto;
     background-color: gold;
-    font-size: calc(var(--mark-size)*.5);
+    font-size: calc(var(--mark-size)*.3);
+    border-radius: 69%;
+    cursor: pointer;
+    outline: none;
+}
+
+#score{
+    margin: auto;
 }
