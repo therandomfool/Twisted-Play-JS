@@ -8,21 +8,22 @@ let block6 = false;
 let block7 = false;
 let block8 = false;
 let block9 = false;
-let straight = 0;
+let block10 = false;
+let block11 = false;
+let block12 = false;
+let block13 = false;
+let block14 = false;
+let block15 = false;
+let block16 = false;
+// let win = 0;
+let tok = 0;
 let credits = 100;
+let turn = 0;
+let winCredits = 0;
 (() => {
     document.getElementById("credits").innerHTML = credits;
 })();
 
-// let pos1 = document.getElementById('c1').innerHTML = 0;
-// let pos2 = document.getElementById('c2').innerHTML = 0;
-// let pos3 = document.getElementById('c3').innerHTML = 0;
-// let pos4 = document.getElementById('c4').innerHTML = 0;
-// let pos5 = document.getElementById('c5').innerHTML = 0;
-// let pos6 = document.getElementById('c6').innerHTML = 0;
-// let pos7 = document.getElementById('c7').innerHTML = 0;
-// let pos8 = document.getElementById('c8').innerHTML = 0;
-// let pos9 = document.getElementById('c9').innerHTML = 0;
 let pos1 = document.getElementById('c1').innerHTML = 'X';
 let pos2 = document.getElementById('c2').innerHTML = 'X';
 let pos3 = document.getElementById('c3').innerHTML = 'X';
@@ -33,13 +34,93 @@ let pos7 = document.getElementById('c7').innerHTML = 'X';
 let pos8 = document.getElementById('c8').innerHTML = 'X';
 let pos9 = document.getElementById('c9').innerHTML = 'X';
 
-function generate() {
-    credits--;
+function cashOut() {
+    credits += winCredits;
+    winCredits = 0;
     (() => {
         document.getElementById("credits").innerHTML = credits;
     })();
-    checkWinner();
-    getRandomNumber();
+    document.getElementById("win").innerHTML = winCredits;
+    (() => {
+        // document.getElementById("text").innerHTML = "Play is Over";
+        setTimeout(function () {
+
+            turn = 0;
+            document.getElementById("text").innerHTML = turn;
+            pos1 = document.getElementById('c1').innerHTML = 'X';
+            pos1 = document.getElementById('c1').style.background = "white";
+            pos1 = document.getElementById('c1').classList.remove('hold');
+
+            pos2 = document.getElementById('c2').innerHTML = 'X';
+            pos2 = document.getElementById('c2').style.background = "white";
+            pos2 = document.getElementById('c2').classList.remove('hold');
+
+            pos3 = document.getElementById('c3').innerHTML = 'X';
+            pos3 = document.getElementById('c3').style.background = "white";
+            pos3 = document.getElementById('c3').classList.remove('hold');
+
+            pos4 = document.getElementById('c4').innerHTML = 'X';
+            pos4 = document.getElementById('c4').style.background = "white";
+            pos4 = document.getElementById('c4').classList.remove('hold');
+
+            pos5 = document.getElementById('c5').innerHTML = 'X';
+            pos5 = document.getElementById('c5').style.background = "white";
+            pos5 = document.getElementById('c5').classList.remove('hold');
+
+            pos6 = document.getElementById('c6').innerHTML = 'X';
+            pos6 = document.getElementById('c6').style.background = "white";
+            pos6 = document.getElementById('c6').classList.remove('hold');
+
+            pos7 = document.getElementById('c7').innerHTML = 'X';
+            pos7 = document.getElementById('c7').style.background = "white";
+            pos7 = document.getElementById('c7').classList.remove('hold');
+
+            pos8 = document.getElementById('c8').innerHTML = 'X';
+            pos8 = document.getElementById('c8').style.background = "white";
+            pos8 = document.getElementById('c8').classList.remove('hold');
+
+            pos9 = document.getElementById('c9').innerHTML = 'X';
+            pos9 = document.getElementById('c9').style.background = "white";
+            pos9 = document.getElementById('c9').classList.remove('hold');
+        }, 500);
+    })();
+    block1 = false;
+    block2 = false;
+    block3 = false;
+    block4 = false;
+    block5 = false;
+    block6 = false;
+    block7 = false;
+    block8 = false;
+    block9 = false;
+    block10 = false;
+    block11 = false;
+    block12 = false;
+    block13 = false;
+    block14 = false;
+    block15 = false;
+    block16 = false;
+}
+
+function generate() {
+    turn++
+    if (turn < 3) {
+        getRandomNumber();
+        checkWinner();
+        console.log(block1, block2, block3, block4, block5, block6, block7, block8, block9, block10, block11, block12, block13, block14, block14, block15, block16)
+
+        credits = credits - 9;
+        (() => {
+            document.getElementById("credits").innerHTML = credits;
+        })();
+        (() => {
+            document.getElementById("text").innerHTML = turn;
+        })();
+        if(turn===2){
+
+            document.getElementById("text").innerHTML = "TURN OVER. HIT CONTINUE BUTTON TO REPLAY";
+        }
+    } 
 }
 
 function getRandomNumber() {
@@ -143,15 +224,16 @@ function getRandomNumber() {
     }
 }
 
+
+
 function holdNumber(clicked_id) {
     let element = document.getElementById(clicked_id);
 
-    // if (document.getElementById(clicked_id).style.background == "blue") {
-    //     element.classList.add('hold')
-    // } else 
-    if (document.getElementById(clicked_id).style.background == "gold") {
+    if (document.getElementById(clicked_id).style.background === "blue") {
+        element.classList.add('hold')
+    } else if (document.getElementById(clicked_id).style.background === "gold") {
         document.getElementById(clicked_id).style.background = "white"
-        element.classList.remove('hold')
+        element.classList.remove('hold');
     } else {
         document.getElementById(clicked_id).style.background = "gold"
         element.classList.add('hold')
@@ -166,17 +248,20 @@ function checkWinner() {
     // Straight winner in position 1 thru 3
 
     if (block1 == true) {
-        
-    } else if ((pos1 + 1 == pos2 && pos2 + 1 == pos3) ||
-        (pos1 + 1 == pos3 && pos3 + 1 == pos2) ||
-        (pos1 - 1 == pos2 && pos2 - 1 == pos3) ||
-        (pos1 - 1 == pos3 && pos3 - 1 == pos2) ||
-        (pos1 + 1 == pos2 && pos1 - 1 == pos3) ||
-        (pos1 + 1 == pos3 && pos1 - 1 == pos2)) {
-        straight++;
-        block1 = true;
+
+    } else if ((pos1 + 1 === pos2 && pos2 + 1 === pos3) ||
+        (pos1 + 1 === pos3 && pos1 - 1 === pos2) ||
+        (pos1 + 1 === pos3 && pos3 + 1 === pos2) ||
+        (pos1 - 1 === pos2 && pos2 - 1 === pos3) ||
+
+        (pos1 - 1 === pos2 && pos1 + 1 === pos3) ||
+        (pos1 - 1 === pos3 && pos3 - 1 === pos2) ||
+        (pos1 + 1 === pos2 && pos1 - 1 === pos3) ||
+        (pos1 + 1 === pos3 && pos1 - 1 === pos2)) {
+
         (() => {
-            document.getElementById("straight").innerHTML = straight;
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c1').style.background = "blue"
         document.getElementById('c1').classList.add('hold')
@@ -184,21 +269,28 @@ function checkWinner() {
         document.getElementById('c2').classList.add('hold')
         document.getElementById('c3').style.background = "blue"
         document.getElementById('c3').classList.add('hold')
+
+
+
+        block1 = true;
     }
 
-    // Straight winner in position 4 thru 6
+    // Straight winner in position 4 thru 6 *block2
     if (block2 == true) {
         return;
-    } else if ((pos4 + 1 == pos5 && pos5 + 1 == pos6) ||
-        (pos4 + 1 == pos6 && pos6 + 1 == pos5) ||
-        (pos4 - 1 == pos5 && pos5 - 1 == pos6) ||
-        (pos4 - 1 == pos6 && pos6 - 1 == pos5) ||
-        (pos4 + 1 == pos5 && pos4 - 1 == pos6) ||
-        (pos4 + 1 == pos6 && pos4 - 1 == pos5)) {
-        straight++;
-        block2 = true;
+    } else if ((pos4 + 1 === pos5 && pos5 + 1 === pos6) ||
+        (pos4 + 1 === pos6 && pos4 - 1 === pos5) ||
+        (pos4 + 1 === pos6 && pos6 + 1 === pos5) ||
+        (pos4 - 1 === pos5 && pos5 - 1 === pos6) ||
+
+        (pos4 - 1 === pos5 && pos4 + 1 === pos6) ||
+        (pos4 - 1 === pos6 && pos6 - 1 === pos5) ||
+        (pos4 + 1 === pos5 && pos4 - 1 === pos6) ||
+        (pos4 + 1 === pos6 && pos4 - 1 === pos5)) {
+
         (() => {
-            document.getElementById("straight").innerHTML = straight;
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c4').style.background = "blue"
         document.getElementById('c4').classList.add('hold')
@@ -206,26 +298,308 @@ function checkWinner() {
         document.getElementById('c5').classList.add('hold')
         document.getElementById('c6').style.background = "blue"
         document.getElementById('c6').classList.add('hold')
+        block2 = true;
+
     }
     // Straight winner in position 7 thru 9 *block3
     if (block3 == true) {
         return;
-    } else if ((pos7 + 1 == pos8 && pos8 + 1 == pos9) ||
-        (pos7 + 1 == pos9 && pos9 + 1 == pos8) ||
-        (pos7 - 1 == pos8 && pos8 - 1 == pos9) ||
-        (pos7 - 1 == pos9 && pos9 - 1 == pos8) ||
-        (pos7 + 1 == pos8 && pos7 - 1 == pos9) ||
-        (pos7 + 1 == pos9 && pos7 - 1 == pos8)) {
-        straight++;
-        block3 = true;
+    } else if ((pos7 + 1 === pos8 && pos8 + 1 === pos9) ||
+        (pos7 + 1 === pos9 && pos7 - 1 === pos8) ||
+        (pos7 + 1 === pos9 && pos9 + 1 === pos8) ||
+        (pos7 - 1 === pos8 && pos8 - 1 === pos9) ||
+
+        (pos7 - 1 === pos8 && pos7 + 1 === pos9) ||
+        (pos7 - 1 === pos9 && pos9 - 1 === pos8) ||
+        (pos7 + 1 === pos8 && pos7 - 1 === pos9) ||
+        (pos7 + 1 === pos9 && pos7 - 1 === pos8)) {
+
         (() => {
-            document.getElementById("straight").innerHTML = straight;
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
+
         })();
-        document.getElementById('c7').style.background = "blue"
-        document.getElementById('c7').classList.add('hold')
-        document.getElementById('c8').style.background = "blue"
-        document.getElementById('c8').classList.add('hold')
+        document.getElementById('c7').style.background = "blue";
+        document.getElementById('c7').classList.add('hold');
+        document.getElementById('c8').style.background = "blue";
+        document.getElementById('c8').classList.add('hold');
+        document.getElementById('c9').style.background = "blue";
+        document.getElementById('c9').classList.add('hold');
+        block3 = true;
+
+    }
+    // Straight winner in diagonal position 1 , 5,  9 *block4
+    if (block4 == true) {
+        return;
+    } else if ((pos1 + 1 === pos5 && pos5 + 1 === pos9) ||
+        (pos1 + 1 === pos9 && pos1 - 1 === pos5) ||
+        (pos1 + 1 === pos9 && pos9 + 1 === pos5) ||
+        (pos1 - 1 === pos5 && pos5 - 1 === pos9) ||
+        // ?
+        (pos1 - 1 === pos5 && pos1 + 1 === pos9) ||
+        // ****
+        (pos1 - 1 === pos9 && pos9 - 1 === pos5) ||
+        (pos1 + 1 === pos5 && pos1 - 1 === pos9) ||
+        (pos1 + 1 === pos9 && pos1 - 1 === pos5)) {
+
+        (() => {
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
+
+        })();
+        document.getElementById('c1').style.background = "blue"
+        document.getElementById('c1').classList.add('hold')
+        document.getElementById('c5').style.background = "blue"
+        document.getElementById('c5').classList.add('hold')
         document.getElementById('c9').style.background = "blue"
         document.getElementById('c9').classList.add('hold')
+        block4 = true;
+
+    }
+    // Straight winner in diagonal position 3, 5,  7 *block5
+    if (block5 == true) {
+        return;
+    } else if ((pos3 + 1 === pos5 && pos5 + 1 === pos7) ||
+        (pos3 + 1 === pos7 && pos3 - 1 === pos5) ||
+        (pos3 + 1 === pos7 && pos7 + 1 === pos5) ||
+        (pos3 - 1 === pos5 && pos5 - 1 === pos7) ||
+
+        (pos3 - 1 === pos5 && pos3 + 1 === pos7) ||
+        (pos3 - 1 === pos7 && pos7 - 1 === pos5) ||
+        (pos3 + 1 === pos5 && pos3 - 1 === pos7) ||
+        (pos3 + 1 === pos7 && pos3 - 1 === pos5)) {
+
+        (() => {
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
+
+        })();
+        document.getElementById('c3').style.background = "blue"
+        document.getElementById('c3').classList.add('hold')
+        document.getElementById('c5').style.background = "blue"
+        document.getElementById('c5').classList.add('hold')
+        document.getElementById('c7').style.background = "blue"
+        document.getElementById('c7').classList.add('hold')
+        block5 = true;
+
+    }
+    // Straight winner in vertical position 1, 4,  7 *block6
+    if (block6 == true) {
+        return;
+    } else if ((pos1 + 1 === pos4 && pos4 + 1 === pos7) ||
+        (pos1 + 1 === pos7 && pos1 - 1 === pos4) ||
+        (pos1 + 1 === pos7 && pos7 + 1 === pos4) ||
+        (pos1 - 1 === pos4 && pos4 - 1 === pos7) ||
+
+        (pos1 - 1 === pos4 && pos1 + 1 === pos7) ||
+        (pos1 - 1 === pos7 && pos7 - 1 === pos4) ||
+        (pos1 + 1 === pos4 && pos1 - 1 === pos7) ||
+        (pos1 + 1 === pos7 && pos1 - 1 === pos4)) {
+
+        (() => {
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
+
+        })();
+        document.getElementById('c1').style.background = "blue"
+        document.getElementById('c1').classList.add('hold')
+        document.getElementById('c4').style.background = "blue"
+        document.getElementById('c4').classList.add('hold')
+        document.getElementById('c7').style.background = "blue"
+        document.getElementById('c7').classList.add('hold')
+
+        block6 = true;
+    }
+    // Straight winner in vertical position 2, 5,  8 *block7
+    if (block7 == true) {
+        return;
+    } else if ((pos2 + 1 === pos5 && pos5 + 1 === pos8) ||
+        (pos2 + 1 === pos8 && pos2 - 1 === pos5) ||
+        (pos2 + 1 === pos8 && pos8 + 1 === pos5) ||
+        (pos2 - 1 === pos5 && pos5 - 1 === pos8) ||
+
+        (pos2 - 1 === pos5 && pos2 + 1 === pos8) ||
+        (pos2 - 1 === pos8 && pos8 - 1 === pos5) ||
+        (pos2 + 1 === pos5 && pos2 - 1 === pos8) ||
+        (pos2 + 1 === pos8 && pos2 - 1 === pos5)) {
+
+        (() => {
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
+
+        })();
+        document.getElementById('c2').style.background = "blue";
+        document.getElementById('c2').classList.add('hold');
+        document.getElementById('c5').style.background = "blue";
+        document.getElementById('c5').classList.add('hold');
+        document.getElementById('c8').style.background = "blue";
+        document.getElementById('c8').classList.add('hold');
+
+        block7 = true;
+    }
+    // Straight winner in vertical position 3, 6,  9 *block8
+    if (block8 == true) {
+        return;
+    } else if ((pos3 + 1 === pos6 && pos6 + 1 === pos9) ||
+        (pos3 + 1 === pos9 && pos3 - 1 === pos6) ||
+        (pos3 + 1 === pos9 && pos9 + 1 === pos6) ||
+        (pos3 - 1 === pos6 && pos6 - 1 === pos9) ||
+
+        (pos3 - 1 === pos6 && pos3 + 1 === pos9) ||
+        (pos3 - 1 === pos9 && pos9 - 1 === pos6) ||
+        (pos3 + 1 === pos6 && pos3 - 1 === pos9) ||
+        (pos3 + 1 === pos9 && pos3 - 1 === pos6)) {
+
+        (() => {
+            winCredits += 9 * 5;
+            document.getElementById("win").innerHTML = winCredits;
+
+        })();
+        document.getElementById('c3').style.background = "blue";
+        document.getElementById('c3').classList.add('hold');
+        document.getElementById('c6').style.background = "blue";
+        document.getElementById('c6').classList.add('hold');
+        document.getElementById('c9').style.background = "blue";
+        document.getElementById('c9').classList.add('hold');
+        block8 = true;
+
+    }
+
+    // Three of a kind in horizontal 1,2,3 positions *block9
+    if (block9 == true) {
+        return;
+    } else if ((pos1 === pos2 && pos2 === pos3)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c1').style.background = "blue";
+        document.getElementById('c1').classList.add('hold');
+        document.getElementById('c2').style.background = "blue";
+        document.getElementById('c2').classList.add('hold');
+        document.getElementById('c3').style.background = "blue";
+        document.getElementById('c3').classList.add('hold');
+        block9 = true;
+    }
+
+    // Three of a kind in horizontal 4,5,6 positions *block10
+    if (block10 == true) {
+        return;
+    } else if ((pos4 === pos5 && pos5 === pos6)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c4').style.background = "blue";
+        document.getElementById('c4').classList.add('hold');
+        document.getElementById('c5').style.background = "blue";
+        document.getElementById('c5').classList.add('hold');
+        document.getElementById('c6').style.background = "blue";
+        document.getElementById('c6').classList.add('hold');
+        block10 = true;
+    }
+    // Three of a kind in horizontal 7,8,9 positions *block11
+    if (block11 == true) {
+        return;
+    } else if ((pos7 === pos8 && pos8 === pos9)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c7').style.background = "blue";
+        document.getElementById('c7').classList.add('hold');
+        document.getElementById('c8').style.background = "blue";
+        document.getElementById('c8').classList.add('hold');
+        document.getElementById('c9').style.background = "blue";
+        document.getElementById('c9').classList.add('hold');
+        block11 = true;
+    }
+    // Three of a kind in horizontal 1,5,9 positions *block12
+    if (block12 == true) {
+        return;
+    } else if ((pos1 === pos5 && pos5 === pos9)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c1').style.background = "blue";
+        document.getElementById('c1').classList.add('hold');
+        document.getElementById('c5').style.background = "blue";
+        document.getElementById('c5').classList.add('hold');
+        document.getElementById('c9').style.background = "blue";
+        document.getElementById('c9').classList.add('hold');
+        block12 = true;
+    }
+    // Three of a kind in horizontal 3,5,7 positions *block13
+    if (block13 == true) {
+        return;
+    } else if ((pos3 === pos5 && pos5 === pos7)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c3').style.background = "blue";
+        document.getElementById('c3').classList.add('hold');
+        document.getElementById('c5').style.background = "blue";
+        document.getElementById('c5').classList.add('hold');
+        document.getElementById('c7').style.background = "blue";
+        document.getElementById('c7').classList.add('hold');
+        block13 = true;
+    }
+    // Three of a kind in horizontal 1,4,7 positions *block14
+    if (block14 == true) {
+        return;
+    } else if ((pos1 === pos4 && pos4 === pos7)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c1').style.background = "blue";
+        document.getElementById('c1').classList.add('hold');
+        document.getElementById('c4').style.background = "blue";
+        document.getElementById('c4').classList.add('hold');
+        document.getElementById('c7').style.background = "blue";
+        document.getElementById('c7').classList.add('hold');
+        block14 = true;
+    }
+    // Three of a kind in horizontal 2,5,8 positions *block15
+    if (block15 == true) {
+        return;
+    } else if ((pos2 === pos5 && pos5 === pos8)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c2').style.background = "blue";
+        document.getElementById('c2').classList.add('hold');
+        document.getElementById('c5').style.background = "blue";
+        document.getElementById('c5').classList.add('hold');
+        document.getElementById('c8').style.background = "blue";
+        document.getElementById('c8').classList.add('hold');
+        block15 = true;
+    }
+    // Three of a kind in horizontal 3,6,9 positions *block16
+    if (block16 == true) {
+        return;
+    } else if ((pos3 === pos6 && pos6 === pos9)) {
+
+        (() => {
+            winCredits += 9 * 30;
+            document.getElementById("win").innerHTML = winCredits;
+        })();
+        document.getElementById('c3').style.background = "blue";
+        document.getElementById('c3').classList.add('hold');
+        document.getElementById('c6').style.background = "blue";
+        document.getElementById('c6').classList.add('hold');
+        document.getElementById('c9').style.background = "blue";
+        document.getElementById('c9').classList.add('hold');
+        block16 = true;
     }
 }

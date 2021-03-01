@@ -16,7 +16,8 @@ body {
 
 .board {
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
+    margin-top: 100px;
     display: grid;
     justify-content: center;
     align-content: center;
@@ -34,6 +35,7 @@ body {
     position: relative;
     font-size: var(--mark-size);
     color: crimson;
+    transition: transform 0.9s ease-in-out;
 }
 
 
@@ -59,4 +61,12 @@ body {
 
 #score{
     margin: auto;
+}
+
+.cont {
+    margin-top: -100px;
+    margin-left: 50px;
+    color: crimson;
+    font-weight: bolder;
+    font-size: calc(var(--mark-size)*.23);
 }

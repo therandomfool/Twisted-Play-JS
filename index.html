@@ -10,10 +10,11 @@
     <div class="container">
       <div class="center">
         <button class="btn" onclick="generate()">Generate</button>
+        <button class="btn" onclick="cashOut()">Continue</button>
         <div id='score'>
           <h3>Credits: <span id="credits"></span></h3>
-          <h3>Straights: <span id="straight"></span></h3>
-          <h3>Three of a Kind: <span id="three"></span></h3>
+          <!-- <h3> Spin #: <span id="text"></span></h3> -->
+          
         </div>
       </div>
     </div>
@@ -27,6 +28,12 @@
       <div class="cell" id="c7" onclick="holdNumber(this.id)" data-cell></div>
       <div class="cell" id="c8" onclick="holdNumber(this.id)" data-cell></div>
       <div class="cell" id="c9" onclick="holdNumber(this.id)" data-cell></div>
+
+    </div>
+    <div class="cont">
+
+      <h3> Wins: <span id="win"></span></h3>
+      <h3>  <span id="text"></span></h3>
     </div>
 
     <script src="app.js"></script>
