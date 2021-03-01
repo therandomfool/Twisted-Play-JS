@@ -1,20 +1,20 @@
 let pos = [];
-let block1 = false;
-let block2 = false;
-let block3 = false;
-let block4 = false;
-let block5 = false;
-let block6 = false;
-let block7 = false;
-let block8 = false;
-let block9 = false;
-let block10 = false;
-let block11 = false;
-let block12 = false;
-let block13 = false;
-let block14 = false;
-let block15 = false;
-let block16 = false;
+let block1;
+let block2;
+let block3;
+let block4;
+let block5;
+let block6;
+let block7;
+let block8;
+let block9;
+let block10;
+let block11;
+let block12;
+let block13;
+let block14;
+let block15;
+let block16;
 // let win = 0;
 let tok = 0;
 let credits = 100;
@@ -102,12 +102,30 @@ function cashOut() {
     block16 = false;
 }
 
+
+
 function generate() {
+    block1 = false;
+    block2 = false;
+    block3 = false;
+    block4 = false;
+    block5 = false;
+    block6 = false;
+    block7 = false;
+    block8 = false;
+    block9 = false;
+    block10 = false;
+    block11 = false;
+    block12 = false;
+    block13 = false;
+    block14 = false;
+    block15 = false;
+    block16 = false;
     turn++
     if (turn < 3) {
         getRandomNumber();
         checkWinner();
-        console.log(block1, block2, block3, block4, block5, block6, block7, block8, block9, block10, block11, block12, block13, block14, block14, block15, block16)
+        console.log(block1, block2, block3, block4, block5, block6, block7, block8, block9, block10, block11, block12, block13, block14, block15, block16)
 
         credits = credits - 9;
         (() => {
@@ -116,11 +134,11 @@ function generate() {
         (() => {
             document.getElementById("text").innerHTML = turn;
         })();
-        if(turn===2){
+        if (turn === 2) {
 
             document.getElementById("text").innerHTML = "TURN OVER. HIT CONTINUE BUTTON TO REPLAY";
         }
-    } 
+    }
 }
 
 function getRandomNumber() {
@@ -230,6 +248,7 @@ function holdNumber(clicked_id) {
     let element = document.getElementById(clicked_id);
 
     if (document.getElementById(clicked_id).style.background === "blue") {
+        document.getElementById(clicked_id).style.background = "gold"
         element.classList.add('hold')
     } else if (document.getElementById(clicked_id).style.background === "gold") {
         document.getElementById(clicked_id).style.background = "white"
@@ -259,16 +278,16 @@ function checkWinner() {
         (pos1 + 1 === pos2 && pos1 - 1 === pos3) ||
         (pos1 + 1 === pos3 && pos1 - 1 === pos2)) {
 
-        (() => {
-            winCredits += 9 * 5;
-            document.getElementById("win").innerHTML = winCredits;
-        })();
+
+        winCredits += 9 * 5;
+        document.getElementById("win").innerHTML = winCredits;
+
         document.getElementById('c1').style.background = "blue"
-        document.getElementById('c1').classList.add('hold')
+        // document.getElementById('c1').classList.add('hold')
         document.getElementById('c2').style.background = "blue"
-        document.getElementById('c2').classList.add('hold')
+        // document.getElementById('c2').classList.add('hold')
         document.getElementById('c3').style.background = "blue"
-        document.getElementById('c3').classList.add('hold')
+        // document.getElementById('c3').classList.add('hold')
 
 
 
@@ -293,11 +312,14 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c4').style.background = "blue"
-        document.getElementById('c4').classList.add('hold')
+        document.getElementById('c4').style.WebkitTransform = "rotate(360deg)"
+        // document.getElementById('c4').classList.add('hold')
         document.getElementById('c5').style.background = "blue"
-        document.getElementById('c5').classList.add('hold')
+        document.getElementById('c5').style.WebkitTransform = "rotate(-360deg)"
+        // document.getElementById('c5').classList.add('hold')
         document.getElementById('c6').style.background = "blue"
-        document.getElementById('c6').classList.add('hold')
+        document.getElementById('c6').style.WebkitTransform = "rotate(360deg)"
+        // document.getElementById('c6').classList.add('hold')
         block2 = true;
 
     }
@@ -320,11 +342,11 @@ function checkWinner() {
 
         })();
         document.getElementById('c7').style.background = "blue";
-        document.getElementById('c7').classList.add('hold');
+        // document.getElementById('c7').classList.add('hold');
         document.getElementById('c8').style.background = "blue";
-        document.getElementById('c8').classList.add('hold');
+        // document.getElementById('c8').classList.add('hold');
         document.getElementById('c9').style.background = "blue";
-        document.getElementById('c9').classList.add('hold');
+        // document.getElementById('c9').classList.add('hold');
         block3 = true;
 
     }
@@ -348,11 +370,11 @@ function checkWinner() {
 
         })();
         document.getElementById('c1').style.background = "blue"
-        document.getElementById('c1').classList.add('hold')
+        // document.getElementById('c1').classList.add('hold')
         document.getElementById('c5').style.background = "blue"
-        document.getElementById('c5').classList.add('hold')
+        // document.getElementById('c5').classList.add('hold')
         document.getElementById('c9').style.background = "blue"
-        document.getElementById('c9').classList.add('hold')
+        // document.getElementById('c9').classList.add('hold')
         block4 = true;
 
     }
@@ -375,11 +397,11 @@ function checkWinner() {
 
         })();
         document.getElementById('c3').style.background = "blue"
-        document.getElementById('c3').classList.add('hold')
+        // document.getElementById('c3').classList.add('hold')
         document.getElementById('c5').style.background = "blue"
-        document.getElementById('c5').classList.add('hold')
+        // document.getElementById('c5').classList.add('hold')
         document.getElementById('c7').style.background = "blue"
-        document.getElementById('c7').classList.add('hold')
+        // document.getElementById('c7').classList.add('hold')
         block5 = true;
 
     }
@@ -402,11 +424,11 @@ function checkWinner() {
 
         })();
         document.getElementById('c1').style.background = "blue"
-        document.getElementById('c1').classList.add('hold')
+        // document.getElementById('c1').classList.add('hold')
         document.getElementById('c4').style.background = "blue"
-        document.getElementById('c4').classList.add('hold')
+        // document.getElementById('c4').classList.add('hold')
         document.getElementById('c7').style.background = "blue"
-        document.getElementById('c7').classList.add('hold')
+        // document.getElementById('c7').classList.add('hold')
 
         block6 = true;
     }
@@ -429,11 +451,11 @@ function checkWinner() {
 
         })();
         document.getElementById('c2').style.background = "blue";
-        document.getElementById('c2').classList.add('hold');
+        // document.getElementById('c2').classList.add('hold');
         document.getElementById('c5').style.background = "blue";
-        document.getElementById('c5').classList.add('hold');
+        // document.getElementById('c5').classList.add('hold');
         document.getElementById('c8').style.background = "blue";
-        document.getElementById('c8').classList.add('hold');
+        // document.getElementById('c8').classList.add('hold');
 
         block7 = true;
     }
@@ -456,11 +478,11 @@ function checkWinner() {
 
         })();
         document.getElementById('c3').style.background = "blue";
-        document.getElementById('c3').classList.add('hold');
+        // document.getElementById('c3').classList.add('hold');
         document.getElementById('c6').style.background = "blue";
-        document.getElementById('c6').classList.add('hold');
+        // document.getElementById('c6').classList.add('hold');
         document.getElementById('c9').style.background = "blue";
-        document.getElementById('c9').classList.add('hold');
+        // document.getElementById('c9').classList.add('hold');
         block8 = true;
 
     }
@@ -475,11 +497,11 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c1').style.background = "blue";
-        document.getElementById('c1').classList.add('hold');
+        // document.getElementById('c1').classList.add('hold');
         document.getElementById('c2').style.background = "blue";
-        document.getElementById('c2').classList.add('hold');
+        // document.getElementById('c2').classList.add('hold');
         document.getElementById('c3').style.background = "blue";
-        document.getElementById('c3').classList.add('hold');
+        // document.getElementById('c3').classList.add('hold');
         block9 = true;
     }
 
@@ -493,11 +515,11 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c4').style.background = "blue";
-        document.getElementById('c4').classList.add('hold');
+        // document.getElementById('c4').classList.add('hold');
         document.getElementById('c5').style.background = "blue";
-        document.getElementById('c5').classList.add('hold');
+        // document.getElementById('c5').classList.add('hold');
         document.getElementById('c6').style.background = "blue";
-        document.getElementById('c6').classList.add('hold');
+        // document.getElementById('c6').classList.add('hold');
         block10 = true;
     }
     // Three of a kind in horizontal 7,8,9 positions *block11
@@ -510,11 +532,11 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c7').style.background = "blue";
-        document.getElementById('c7').classList.add('hold');
+        // document.getElementById('c7').classList.add('hold');
         document.getElementById('c8').style.background = "blue";
-        document.getElementById('c8').classList.add('hold');
+        // document.getElementById('c8').classList.add('hold');
         document.getElementById('c9').style.background = "blue";
-        document.getElementById('c9').classList.add('hold');
+        // document.getElementById('c9').classList.add('hold');
         block11 = true;
     }
     // Three of a kind in horizontal 1,5,9 positions *block12
@@ -527,11 +549,11 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c1').style.background = "blue";
-        document.getElementById('c1').classList.add('hold');
+        // document.getElementById('c1').classList.add('hold');
         document.getElementById('c5').style.background = "blue";
-        document.getElementById('c5').classList.add('hold');
+        // document.getElementById('c5').classList.add('hold');
         document.getElementById('c9').style.background = "blue";
-        document.getElementById('c9').classList.add('hold');
+        // document.getElementById('c9').classList.add('hold');
         block12 = true;
     }
     // Three of a kind in horizontal 3,5,7 positions *block13
@@ -544,11 +566,11 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c3').style.background = "blue";
-        document.getElementById('c3').classList.add('hold');
+        // document.getElementById('c3').classList.add('hold');
         document.getElementById('c5').style.background = "blue";
-        document.getElementById('c5').classList.add('hold');
+        // document.getElementById('c5').classList.add('hold');
         document.getElementById('c7').style.background = "blue";
-        document.getElementById('c7').classList.add('hold');
+        // document.getElementById('c7').classList.add('hold');
         block13 = true;
     }
     // Three of a kind in horizontal 1,4,7 positions *block14
@@ -561,11 +583,11 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c1').style.background = "blue";
-        document.getElementById('c1').classList.add('hold');
+        // document.getElementById('c1').classList.add('hold');
         document.getElementById('c4').style.background = "blue";
-        document.getElementById('c4').classList.add('hold');
+        // document.getElementById('c4').classList.add('hold');
         document.getElementById('c7').style.background = "blue";
-        document.getElementById('c7').classList.add('hold');
+        // document.getElementById('c7').classList.add('hold');
         block14 = true;
     }
     // Three of a kind in horizontal 2,5,8 positions *block15
@@ -578,14 +600,14 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c2').style.background = "blue";
-        document.getElementById('c2').classList.add('hold');
+        // document.getElementById('c2').classList.add('hold');
         document.getElementById('c5').style.background = "blue";
-        document.getElementById('c5').classList.add('hold');
+        // document.getElementById('c5').classList.add('hold');
         document.getElementById('c8').style.background = "blue";
-        document.getElementById('c8').classList.add('hold');
+        // document.getElementById('c8').classList.add('hold');
         block15 = true;
     }
-    // Three of a kind in horizontal 3,6,9 positions *block16
+    // Three of a kind in vertical 3,6,9 positions *block16
     if (block16 == true) {
         return;
     } else if ((pos3 === pos6 && pos6 === pos9)) {
@@ -595,11 +617,11 @@ function checkWinner() {
             document.getElementById("win").innerHTML = winCredits;
         })();
         document.getElementById('c3').style.background = "blue";
-        document.getElementById('c3').classList.add('hold');
+        // document.getElementById('c3').classList.add('hold');
         document.getElementById('c6').style.background = "blue";
-        document.getElementById('c6').classList.add('hold');
+        // document.getElementById('c6').classList.add('hold');
         document.getElementById('c9').style.background = "blue";
-        document.getElementById('c9').classList.add('hold');
+        // document.getElementById('c9').classList.add('hold');
         block16 = true;
     }
 }
